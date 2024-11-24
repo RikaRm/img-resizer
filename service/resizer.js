@@ -1,14 +1,12 @@
 const gm = require("gm")
-async function resizeImage(filePath) {
-    await new Promise((resolve, reject) => {
+function resizeImage(filePath) {
+    return new Promise((resolve, reject) => {
         gm(filePath)
             .resize(800, 800)
-            .write(filePath, async function (err) {
-                if (err) return reject(err)
-                console.log("Imagem redimensionada com sucesso: ", filePath)
+            .write(filePath, function (err) {
+                if (err) return reject(err);
                 resolve()
             })
     })
 }
-
-module.exports = resizeImage
+module.exports = { resizeImage }
